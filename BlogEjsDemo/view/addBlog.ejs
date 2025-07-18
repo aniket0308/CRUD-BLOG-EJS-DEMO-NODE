@@ -1,0 +1,39 @@
+<%- include('header') %>
+
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7">
+      <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+        <div class="card-body p-5">
+          <h2 class="mb-4 text-center text-primary fw-bold">
+            <%= edit ? 'Edit Blog' : 'Add a New Blog' %>
+          </h2>
+          <form action="<%= edit ? ('/editBlog/' + encodeURIComponent(blog.title)) : '/addBlog' %>" method="POST">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title" name="title" required value="<%= blog ? blog.title : '' %>" <%= edit ? 'readonly' : '' %>>
+            </div>
+            <div class="mb-3">
+              <label for="author" class="form-label">Author</label>
+              <input type="text" class="form-control" id="author" name="author" required value="<%= blog ? blog.author : '' %>">
+            </div>
+            <div class="mb-3">
+              <label for="summary" class="form-label">Summary</label>
+              <textarea class="form-control" id="summary" name="summary" rows="3" required><%= blog ? blog.summary : '' %></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label">Image URL</label>
+              <input type="text" class="form-control" id="image" name="image" value="<%= blog ? blog.image : 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80' %>" required>
+              <div class="form-text">Paste a static image URL or use the default above.</div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+              <%= edit ? 'Edit Blog' : 'Add Blog' %>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('footer') %>
